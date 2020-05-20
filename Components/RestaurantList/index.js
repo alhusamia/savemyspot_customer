@@ -23,11 +23,11 @@ class RestaurantList extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: "Save My Spot",
-      headerRight: <LoginButton navigation={navigation} />
+      headerRight: () => <LoginButton navigation={navigation} />,
     };
   };
 
-  updateSearch = search => {
+  updateSearch = (search) => {
     restaurantStore.query = search;
   };
 
@@ -36,7 +36,7 @@ class RestaurantList extends Component {
 
     let RestaurantList;
     if (restaurants) {
-      RestaurantList = restaurants.map(restaurant => (
+      RestaurantList = restaurants.map((restaurant) => (
         <RestaurantObject restaurant={restaurant} key={restaurant.id} />
       ));
     }
@@ -44,7 +44,7 @@ class RestaurantList extends Component {
     let spots = authStore.spots;
     let SpotList;
     if (spots) {
-      SpotList = spots.map(spot => <Spot spot={spot} key={spot.id} />);
+      SpotList = spots.map((spot) => <Spot spot={spot} key={spot.id} />);
     }
 
     return (
@@ -54,7 +54,7 @@ class RestaurantList extends Component {
           <View
             style={{
               flexDirection: "row",
-              marginLeft: 10
+              marginLeft: 10,
             }}
           >
             <Icon style={{ marginTop: 5 }} name="search" />

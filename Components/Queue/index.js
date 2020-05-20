@@ -6,9 +6,10 @@ import { withNavigation } from "react-navigation";
 import Spinner from "./spinner.js";
 
 //Stores
+import socketStore from "../../Stores/scoketStore";
 import authStore from "../../Stores/authStore";
 
-import styles from "./styles";
+import styles from "./styles.js";
 
 import { Button, Item, Text, View } from "native-base";
 import { Image, TouchableOpacity } from "react-native";
@@ -18,11 +19,40 @@ class Queue extends Component {
     super(props);
     this.state = {
       currentQ: null,
-      position: null
+      position: null,
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.restaurantRequest();
+    socketStore.socket.on("q info", (data) => {
+      this.setState({ currentQ: data.restaurantQ });
+    });
+    socketStore.socket.on("user spot", (data) => {
+      this.setState({ position: data.spot });
+    });
+    socketStore.socket.on("update queue", () => {
+      this.restaurantRequest();
+    });
+  }
+
+  componentDidUnmount() {
+    socketStore.socket.off("q info");
+    socketStore.socket.off("user spot");
+    socketStore.socket.off("update queue");
+  }
+
+  restaurantRequest() {
+    if (authStore.user) {
+      socketStore.getRestaurant(this.props.restaurant, authStore.user.user_id);
+    } else {
+      socketStore.getRestaurant(this.props.restaurant, null);
+    }
+  }
+
+  leaveQ() {
+    socketStore.leaveQ(this.state.position);
+  }
 
   getQueueNumber() {
     if (this.state.position) {
@@ -88,7 +118,7 @@ class Queue extends Component {
           source={{
             uri:
               restaurant.picture ||
-              "https://screenshotlayer.com/images/assets/placeholder.png"
+              "https://screenshotlayer.com/images/assets/placeholder.png",
           }}
           style={styles.img}
         />

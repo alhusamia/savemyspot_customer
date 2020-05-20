@@ -4,6 +4,7 @@ import { Button, Content, Icon, Text } from "native-base";
 import { View } from "react-native";
 
 //Stores
+import socketStore from "../../Stores/scoketStore";
 
 import styles from "./styles.js";
 
@@ -12,7 +13,7 @@ class Spinner extends Component {
     super(props);
     this.state = {
       max: 6,
-      numOfGuests: 1
+      numOfGuests: 1,
     };
 
     this.increment = this.increment.bind(this);
@@ -21,6 +22,7 @@ class Spinner extends Component {
 
   increment() {
     var num = this.state.numOfGuests;
+    console.log("num", this.state.numOfGuests);
     if (num < this.state.max) {
       num = num + 1;
       this.setState({ numOfGuests: num });
@@ -51,7 +53,13 @@ class Spinner extends Component {
           rounded
           light
           style={{ marginLeft: 15 }}
-          //onPress={...}
+          onPress={() =>
+            socketStore.addToQ(
+              this.props.user,
+              this.props.restaurant,
+              this.state.numOfGuests
+            )
+          }
         >
           <Text>Join Q</Text>
         </Button>

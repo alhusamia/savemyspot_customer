@@ -1,5 +1,5 @@
 import React from "react";
-import { createStackNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 // Components
 import RestaurantList from "../Components/RestaurantList";
@@ -12,10 +12,10 @@ const Nav = createStackNavigator(
     RestaurantList: RestaurantList,
     RestaurantDetail: RestaurantDetail,
     Login: Login,
-    Signup: Signup
+    Signup: Signup,
   },
   {
-    initialRouteName: "RestaurantList"
+    initialRouteName: "RestaurantList",
   }
 );
 

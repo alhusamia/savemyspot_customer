@@ -7,23 +7,29 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "0.1.6",
     "accordion-collapse-react-native": "^0.1.9",
     "axios": "^0.18.0",
-    "expo": "^32.0.0",
+    "expo": "^37.0.0",
+    "expo-font": "^8.1.1",
     "jwt-decode": "^2.2.0",
-    "mobx": "^5.9.4",
-    "mobx-react": "^5.4.3",
-    "native-base": "^2.12.1",
-    "react": "16.5.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
-    "react-native-elements": "^1.1.0",
-    "react-native-paper": "^2.15.0",
-    "react-native-vector-icons": "^6.4.2",
-    "react-navigation": "^3.6.1",
-    "socket.io-client": "^2.1.1"
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.2.2",
+    "native-base": "^2.13.12",
+    "react": "16.9.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
+    "react-native-elements": "^2.0.0",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-paper": "^3.10.1",
+    "react-native-safe-area-context": "0.7.3",
+    "react-native-screens": "2.2.0",
+    "react-native-vector-icons": "^6.6.0",
+    "react-navigation": "^4.3.9",
+    "react-navigation-stack": "^2.5.1",
+    "socket.io-client": "^2.3.0"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0"
+    "babel-preset-expo": "^8.1.0"
   },
   "private": true
 }

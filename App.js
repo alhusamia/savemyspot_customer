@@ -1,5 +1,6 @@
 import React from "react";
-import { Font, AppLoading } from "expo";
+import { AppLoading } from "expo";
+import * as Font from "expo-font";
 
 import { Root } from "native-base";
 // Component
@@ -10,14 +11,14 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      fontsAreLoaded: false
+      fontsAreLoaded: false,
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     Font.loadAsync({
       Roboto: require("native-base/Fonts/Roboto.ttf"),
-      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
     }).then(() => this.setState({ fontsAreLoaded: true }));
   }
 
